@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { User } from "../user-interface";
 
+
 @Component ({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
