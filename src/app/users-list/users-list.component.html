@@ -1,9 +1,9 @@
 
   <div class="user-list-container">
+    <app-create-user-form></app-create-user-form>
     <div class="users-list-title">КОМПОНЕНТ СПИСКА ЮЗЕРОВ</div>
   <div class="users-list">
-
-    <div *ngFor="let user of usersService.usersSubject$ | async">
+    <div *ngFor="let user of usersService.usersSubject$.asObservable() | async">
       <app-user-card [user]="user" (deleteUser)="deleteUser($event)"></app-user-card>
     </div>
   </div>

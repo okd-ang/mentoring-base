@@ -1,5 +1,4 @@
 import { AsyncPipe, NgFor } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,9 +8,8 @@ import {
 import { UsersApiService } from '../users-api.service';
 import { UserCardComponent } from './user-card/user-card.component';
 import { User } from './user-interface';
-import { TodosApiService } from '../todos-api.service';
-import { Todo } from '../todos-list/todos-interface';
 import { UsersService } from '../users.service';
+import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
 
 const consoleResponse = (response: unknown) => console.log(response);
 
@@ -21,7 +19,7 @@ const consoleResponse = (response: unknown) => console.log(response);
   templateUrl: './users-list.component.html',
   styleUrl: './users-list.component.scss',
   standalone: true,
-  imports: [NgFor, UserCardComponent, AsyncPipe],
+  imports: [NgFor, UserCardComponent, AsyncPipe, CreateUserFormComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
