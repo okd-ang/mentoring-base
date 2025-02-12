@@ -4,8 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
-  usersSubject$ = new BehaviorSubject<User[]>([]);
-  users$ = this.usersSubject$.asObservable() ;
+  private usersSubject$ = new BehaviorSubject<User[]>([]);
+  users$ = this.usersSubject$.asObservable();
 
   setUsers(users: User[]) {
     this.usersSubject$.next(users);
@@ -20,7 +20,15 @@ export class UsersService {
   }
 
   createUser(user: User) {
-    this.usersSubject$.next([...this.usersSubject$.value, user]);
+    const existingUser = this.usersSubject$.value.find(
+      currentElement => currentElement.email === user.email 
+    )    
+    if (existingUser !== undefined) {
+      alert('ТАКОЙ ЕМАИЛ УЖЕ ЕСТЬ')
+    } else {
+      this.usersSubject$.next([...this.usersSubject$.value, user]);
+      alert('НОВЫЙ ЮЗЕР ДОБАВЛЕН!')
+    }
   }
 
   deleteUser(id: number) {

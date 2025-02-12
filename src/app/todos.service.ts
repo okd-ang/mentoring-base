@@ -15,11 +15,6 @@ export class TodosService {
     this.todosSubject$.next(
       this.todosSubject$.value.map((todo) => {
         return todo.id === editedTodo.id ? editedTodo : todo
-        // if (todo.id === editedTodo.id) {
-        //   return editedTodo;
-        // } else {
-        //   return todo;
-        // }
       })
     );
   }

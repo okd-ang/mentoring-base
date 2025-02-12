@@ -30,8 +30,25 @@ export class UsersListComponent {
     this.usersApiService.getUsers().subscribe((response: User[]) => {
       this.usersService.setUsers(response);
     });
+
+    this.usersService.users$.subscribe(
+      users => console.log(users)
+    )
   }
   deleteUser(id: number) {
     this.usersService.deleteUser(id);
+  }
+
+  public createUser(formData: any) {
+    this.usersService.createUser({
+      id: new Date().getTime(),
+      name: formData.name,
+      email: formData.email,
+      website: formData.website,
+      company: {
+        name: formData.companyName,
+      }
+    });
+    console.log(event);
   }
 }
