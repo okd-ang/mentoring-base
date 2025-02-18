@@ -14,13 +14,21 @@ export class TodosService {
   editTodo(editedTodo: Todo) {
     this.todosSubject$.next(
       this.todosSubject$.value.map((todo) => {
-        return todo.id === editedTodo.id ? editedTodo : todo
+        return todo.id === editedTodo.id ? editedTodo : todo;
       })
     );
   }
 
   createTodo(todo: Todo) {
-    this.todosSubject$.next([...this.todosSubject$.value, todo]);
+    const existingTodo = this.todosSubject$.value.find(
+      (currentElement) => currentElement.userId === todo.userId
+    );
+    if (existingTodo !== undefined) {
+      alert('Юзер уже есть');
+    } else {
+      this.todosSubject$.next([...this.todosSubject$.value, todo]);
+      alert('Юзера создан');
+    }
   }
 
   deleteTodo(id: number) {
