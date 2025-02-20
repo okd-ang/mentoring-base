@@ -9,6 +9,9 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { MatInputModule, MatFormField } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 export function completedValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -25,7 +28,7 @@ export function completedValidator(): ValidatorFn {
   standalone: true,
   templateUrl: './create-todo-form.html',
   styleUrl: './create-todo-form.scss',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, MatInputModule, MatFormField, MatButtonModule, MatIconModule],
 })
 export class CreateTodoFormComponent {
   @Output()
@@ -36,7 +39,6 @@ export class CreateTodoFormComponent {
     userId: new FormControl('', [Validators.required]),
     completed: new FormControl('', [Validators.required, completedValidator()]),
   });
-  formTodo: any;
 
   private getCompletedValue(): boolean {
     const value = this.form.get('completed')?.value!.trim().toLowerCase();

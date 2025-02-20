@@ -24,10 +24,10 @@ export class TodosService {
       (currentElement) => currentElement.userId === todo.userId
     );
     if (existingTodo !== undefined) {
-      alert('Юзер уже есть');
+      alert('Такая Задача уже есть');
     } else {
       this.todosSubject$.next([...this.todosSubject$.value, todo]);
-      alert('Юзера создан');
+      alert('Новая Задача создана');
     }
   }
 

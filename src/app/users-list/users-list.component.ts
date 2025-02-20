@@ -11,8 +11,6 @@ import { createUser, User } from './user-interface';
 import { UsersService } from '../users.service';
 import { CreateUserFormComponent } from '../create-user-form/create-user-form.component';
 
-const consoleResponse = (response: unknown) => console.log(response);
-
 @Injectable()
 @Component({
   selector: 'app-users-list',
@@ -37,14 +35,6 @@ export class UsersListComponent {
   }
 
   public createUser(formData: createUser) {
-    this.usersService.createUser({
-      id: new Date().getTime(),
-      name: formData.name,
-      email: formData.email,
-      website: formData.website,
-      company: {
-        name: formData.company.name,
-      }
-    });
+    this.usersService.createUser(formData);
   }
 }
