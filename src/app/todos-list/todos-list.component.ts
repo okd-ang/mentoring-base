@@ -10,6 +10,8 @@ import { TodosApiService } from '../todos-api.service';
 import { Todo } from './todos-interface';
 import { TodosService } from '../todos.service';
 import { CreateTodoFormComponent } from '../create-todo-form/create-todo-form.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Injectable()
 @Component({
@@ -17,7 +19,14 @@ import { CreateTodoFormComponent } from '../create-todo-form/create-todo-form.co
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss',
   standalone: true,
-  imports: [NgFor, TodoCardComponent, AsyncPipe, CreateTodoFormComponent],
+  imports: [
+    NgFor,
+    TodoCardComponent,
+    AsyncPipe,
+    CreateTodoFormComponent,
+    MatButtonModule,
+    MatIconModule,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosListComponent {
@@ -32,6 +41,10 @@ export class TodosListComponent {
 
   deleteTodo(id: number) {
     this.todosService.deleteTodo(id);
+  }
+
+  editTodo(todo: Todo) {
+    this.todosService.editTodo(todo)
   }
 
   public createTodo(formData: Todo) {

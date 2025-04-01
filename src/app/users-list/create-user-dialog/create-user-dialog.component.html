@@ -1,41 +1,39 @@
-<h1>Create user form</h1>
-<div class="mat-form" style="margin: 30px 30px 30px 0;">
-  <form style='display: flex; flex-direction: column;'
-  [formGroup]='form'
-  >
-  
-    <mat-form-field >
-      <mat-label >Имя пользователя</mat-label>
-      <input matInput formControlName="name">
-      <mat-error>Исправьте имя пользователя</mat-error>
-    </mat-form-field>
-    
+<h1>СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ</h1>
+<div class="mat-form" style="margin: 30px 30px 30px 30px">
+  <form style="display: flex; flex-direction: column" [formGroup]="form">
     <mat-form-field>
-      <mat-label>Введите вашу почту</mat-label>
-      <input matInput formControlName="email">
-      <mat-error>Исправьте имя пользователя</mat-error>
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-label>Адрес сайта</mat-label>
-      <input matInput formControlName="website">
-      <mat-error>Исправьте имя пользователя</mat-error>
-    </mat-form-field>
-    
-    <mat-form-field formGroupName="company">
-      <mat-label>Имя компании</mat-label>
-      <input matInput formControlName="name">
+      <mat-label>Имя пользователя</mat-label>
+      <input matInput formControlName="name" />
       <mat-error>Исправьте имя пользователя</mat-error>
     </mat-form-field>
 
-    <button mat-raised-button 
-    (click)="submitForm()"
-    type="submit"
-    style="width: 250px; margin-top: 20px;"
-    [disabled]="form.invalid">
-    <mat-icon>person add</mat-icon>
+    <mat-form-field>
+      <mat-label>Введите вашу почту</mat-label>
+      <input matInput formControlName="email" />
+      <mat-error>Исправьте имя пользователя</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Адрес сайта</mat-label>
+      <input matInput formControlName="website" />
+      <mat-error>Исправьте имя пользователя</mat-error>
+    </mat-form-field>
+
+    <mat-form-field formGroupName="company">
+      <mat-label>Имя компании</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error>Исправьте имя пользователя</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      (click)="submitForm()"
+      type="submit"
+      style="width: 250px; margin-top: 20px"
+      [disabled]="form.invalid"
+    >
+      <mat-icon>person add</mat-icon>
       CREATE
     </button>
   </form>
 </div>
-

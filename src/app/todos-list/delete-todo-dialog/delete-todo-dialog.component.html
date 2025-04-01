@@ -1,0 +1,6 @@
+<h2 mat-dialog-title>УДАЛИТЬ ЗАДАЧУ: "{{ this.data.todo.title }}?"</h2>
+<mat-dialog-content> </mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>ОТМЕНА</button>
+  <button mat-button cdkFocusInitial [mat-dialog-close]="true">УДАЛИТЬ</button>
+</mat-dialog-actions>

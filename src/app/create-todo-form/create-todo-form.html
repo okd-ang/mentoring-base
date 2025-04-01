@@ -1,34 +1,35 @@
 <h1>Create ToDo Form</h1>
 
 <div class="mat-form" style="margin: 30px 30px 30px 0">
-  <form
-    style="display: flex; flex-direction: column"
-    [formGroup]="form"
-  >
-  
+  <form style="display: flex; flex-direction: column" [formGroup]="form">
     <mat-form-field>
       <mat-label>Текст задачи</mat-label>
-      <input matInput formControlName="title">
+      <input matInput formControlName="title" />
       <mat-error>Исправьте текст задачи</mat-error>
     </mat-form-field>
-    
+
     <mat-form-field>
       <mat-label>Автор задачи</mat-label>
-      <input matInput formControlName="userId">
+      <input matInput formControlName="userId" />
       <mat-error>Исправьте имя автора задачи</mat-error>
     </mat-form-field>
-    
-    <mat-form-field>
-      <mat-label>Задача решена</mat-label>
-      <input matInput formControlName="completed">
-      <mat-error>Отвтет не корректен</mat-error>
-    </mat-form-field>
 
-    <button mat-raised-button
-    (click)="submitForm()"
-    type="submit" 
-    style="width: 250px; margin-top: 20px" 
-    [disabled]="form.invalid">
+    <mat-button-toggle-group
+      formControlName="completed"
+      name="toggleTodo"
+      aria-label="Toggle Task Completion"
+    >
+      <mat-button-toggle value="true">ДА</mat-button-toggle>
+      <mat-button-toggle value="false">НЕТ</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <button
+      mat-raised-button
+      (click)="submitForm()"
+      type="submit"
+      style="width: 250px; margin-top: 20px"
+      [disabled]="form.invalid"
+    >
       <mat-icon>task</mat-icon>
       Create ToDo
     </button>

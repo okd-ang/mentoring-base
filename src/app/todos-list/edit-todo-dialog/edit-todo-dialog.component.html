@@ -1,0 +1,38 @@
+<h1>ЗАДАЧА: {{ data.todo.title }}</h1>
+
+<form
+  style="display: flex; flex-direction: column; padding: 100px"
+  [formGroup]="form"
+>
+  <mat-form-field>
+    <mat-label>Текст задачи</mat-label>
+    <input matInput formControlName="title" />
+    <mat-error>Исправьте текст задачи</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Автор задачи</mat-label>
+    <input matInput formControlName="userId" />
+    <mat-error>Исправьте имя автора задачи</mat-error>
+  </mat-form-field>
+
+  <mat-button-toggle-group
+    formControlName="completed"
+    name="toggleTodo"
+    aria-label="Toggle Task Completion"
+  >
+    <mat-button-toggle [value]="true">ДА</mat-button-toggle>
+    <mat-button-toggle [value]="false">НЕТ</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <button
+    mat-raised-button
+    type="submit"
+    style="width: 250px; margin-top: 20px"
+    [disabled]="form.invalid"
+    [mat-dialog-close]="todoWithUpdatedFields"
+  >
+    <mat-icon>task</mat-icon>
+    РЕДАКТИРОВАТЬ ToDo
+  </button>
+</form>

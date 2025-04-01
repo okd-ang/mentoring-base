@@ -1,34 +1,35 @@
-import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatInputModule, MatFormField } from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-
-export function completedValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const value = control.value?.trim().toLowerCase();
-    if (value === 'да' || value === 'нет') {
-      return null;
-    }
-    return { invalidCompleted: true };
-  };
-}
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-create-todo-form',
   standalone: true,
   templateUrl: './create-todo-form.html',
   styleUrl: './create-todo-form.scss',
-  imports: [ReactiveFormsModule, NgIf, MatInputModule, MatFormField, MatButtonModule, MatIconModule],
+  imports: [
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormField,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    MatButtonToggleModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+  ],
 })
 export class CreateTodoFormComponent {
   @Output()
@@ -37,20 +38,11 @@ export class CreateTodoFormComponent {
   public form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(2)]),
     userId: new FormControl('', [Validators.required]),
-    completed: new FormControl('', [Validators.required, completedValidator()]),
+    completed: new FormControl(null, [Validators.required]),
   });
 
-  private getCompletedValue(): boolean {
-    const value = this.form.get('completed')?.value!.trim().toLowerCase();
-    if (value === 'да') return true;
-    else return false;
-  }
-
   public submitForm(): void {
-    this.createTodo.emit({
-      ...this.form.value,
-      completed: this.getCompletedValue(),
-    });
+    this.createTodo.emit(this.form.value);
     this.form.reset();
   }
 }

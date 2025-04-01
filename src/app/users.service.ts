@@ -14,20 +14,20 @@ export class UsersService {
   editUser(editeUser: User) {
     this.usersSubject$.next(
       this.usersSubject$.value.map((user) => {
-        return user.id === editeUser.id ? editeUser : user
+        return user.id === editeUser.id ? editeUser : user;
       })
     );
   }
 
   createUser(user: User) {
     const existingUser = this.usersSubject$.value.find(
-      currentElement => currentElement.email === user.email 
-    )    
+      (currentElement) => currentElement.email === user.email
+    );
     if (existingUser !== undefined) {
-      alert('ТАКОЙ ЕМАИЛ УЖЕ ЕСТЬ')
+      alert('ТАКОЙ ЕМАИЛ УЖЕ ЕСТЬ');
     } else {
       this.usersSubject$.next([...this.usersSubject$.value, user]);
-      alert('НОВЫЙ ЮЗЕР ДОБАВЛЕН!')
+      alert('НОВЫЙ ЮЗЕР ДОБАВЛЕН!');
     }
   }
 

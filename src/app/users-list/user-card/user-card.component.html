@@ -1,12 +1,15 @@
 <div class="users-list__card">
   <h1>Пользователь</h1>
-  <p>{{user.name}}</p>
-  <p>{{user.email}}</p>
-  <p>{{user.phone}}</p>
-  <p>{{user.website}}</p>
-  <p>{{user.company.name}}</p>
+  <p>{{ user.name }}</p>
+  <p>{{ user.email }}</p>
+  <p>{{ user.phone }}</p>
+  <p>{{ user.website }}</p>
+  <p>{{ user.company.name }}</p>
 
-  <button class="users-list__button" (click)=onDeleteUser(user.id)>УДАЛИТЬ ЮЗЕРА</button>
-  <button class="users-list__button" (click)=openDialog()>РЕДАКТИРОВАТЬ ЮЗЕРА</button>
+  <button class="users-list__button" (click)="openDeleteDialog()">
+    УДАЛИТЬ ЮЗЕРА
+  </button>
+  <button class="users-list__button" (click)="openDialog()">
+    РЕДАКТИРОВАТЬ ЮЗЕРА
+  </button>
 </div>
-
