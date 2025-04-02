@@ -25,13 +25,12 @@ export class TodoCardComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
-  private performAction(
-    actionName: string,
-    action: Function,
+  private showSnackBarTodo(
+    message: string,
+    action: string = 'OK',
     duration: number = 3000
   ): void {
-    action();
-    this.snackBar.open(actionName, 'OK', { duration });
+    this.snackBar.open(message, action, { duration });
   }
 
   public openDeleteTodoDialog(): void {
@@ -42,25 +41,25 @@ export class TodoCardComponent {
 
     dialogRef.afterClosed().subscribe((result: boolean | undefined) => {
       if (result) {
-        this.performAction('ЗАДАЧА УДАЛЕНА', () => {
-          this.deleteTodo.emit(this.todo.id);
-        });
+        this.showSnackBarTodo('Задача удалена', 'Закрыть');
+        this.deleteTodo.emit(this.todo.id);
       } else {
-        this.performAction('ОТМЕНА УДАЛЕНИЯ ЗАДАЧИ', () => {});
+        this.showSnackBarTodo('Отмена удаления задачи', 'Закрыть');
       }
     });
   }
 
-  public openDialog(): void {
+  public openEditTodoDialog(): void {
     const dialogRef = this.dialog.open(EditTodoDialogComponent, {
       data: { todo: this.todo },
     });
 
     dialogRef.afterClosed().subscribe((editResultTodo: Todo | undefined) => {
       if (editResultTodo) {
-        this.performAction('ОТРЕДАКТИРОВАЛИ ЗАДАЧУ', () => {
-          this.editTodo.emit(editResultTodo);
-        });
+        this.showSnackBarTodo('Задача отредактирована', 'Закрыть');
+        this.editTodo.emit(editResultTodo);
+      } else {
+        this.showSnackBarTodo('Редактирование отменено', 'Закрыть');
       }
     });
   }

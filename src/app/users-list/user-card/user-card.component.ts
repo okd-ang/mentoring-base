@@ -5,13 +5,15 @@ import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { CustomUpperCasePipe } from '../../pipes/upper-case.pipe';
+
 
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
   standalone: true,
-  imports: [MatDialogModule, MatSnackBarModule],
+  imports: [MatDialogModule, MatSnackBarModule, CustomUpperCasePipe, ],
 })
 export class UserCardComponent {
   @Input()
@@ -26,13 +28,8 @@ export class UserCardComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
-  private performAction(
-    actionName: string,
-    action: Function,
-    duration: number = 3000
-  ): void {
-    action();
-    this.snackBar.open(actionName, 'OK', { duration });
+  private showSnackBarUser(message: string, action: string = 'OK', duration: number = 3000): void {
+    this.snackBar.open(message, action, { duration });
   }
 
   public openDeleteDialog(): void {
@@ -43,11 +40,10 @@ export class UserCardComponent {
 
     dialogRef.afterClosed().subscribe((result: boolean | undefined) => {
       if (result) {
-        this.performAction('ПОЛЬЗОВАТЕЛЬ УДАЛЕН', () => {
-          this.deleteUser.emit(this.user.id);
-        });
+        this.showSnackBarUser('Пользователь удален', 'Закрыть');
+        this.deleteUser.emit(this.user.id);
       } else {
-        this.performAction('ОТМЕНА УДАЛЕНИЯ', () => {});
+        this.showSnackBarUser('Отмена удаления', 'Закрыть');
       }
     });
   }
@@ -59,9 +55,10 @@ export class UserCardComponent {
 
     dialogRef.afterClosed().subscribe((editResult: User | undefined) => {
       if (editResult) {
-        this.performAction('ОТРЕДАКТИРОВАЛИ ПОЛЬЗОВАТЕЛЯ', () => {
-          this.editUser.emit(editResult);
-        });
+        this.showSnackBarUser('Пользователь отредактирован', 'Закрыть');
+        this.editUser.emit(editResult);
+      } else {
+        this.showSnackBarUser('Редактирование отменено', 'Закрыть');
       }
     });
   }
