@@ -16,10 +16,5 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class DeleteTodoDialogComponent {
   public readonly data = inject<{ todo: Todo }>(MAT_DIALOG_DATA);
-
   readonly dialog = inject(MatDialog);
-
-  constructor() {
-    console.log('ДАННЫЕ ЗАДАЧИ КОТОРЫЕ ПРИХОДЯТ В МОДАЛКУ:', this.data);
-  }
 }

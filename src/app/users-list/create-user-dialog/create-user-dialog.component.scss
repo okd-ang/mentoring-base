@@ -4,4 +4,15 @@
 
 .mat-form {
   width: 250px;
+  margin: 30px 30px 30px 30px;
+}
+
+.form-createUser {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-createUser {
+  width: 250px;
+  margin-top: 20px;
 }

@@ -8,4 +8,15 @@
 
 .mat-form {
   width: 250px;
+  margin: 30px 30px 30px 0;
+}
+
+.create-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-create {
+  width: 250px; 
+  margin-top: 20px;
 }

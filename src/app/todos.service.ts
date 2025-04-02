@@ -21,7 +21,7 @@ export class TodosService {
 
   createTodo(todo: Todo) {
     const existingTodo = this.todosSubject$.value.find(
-      (currentElement) => currentElement.userId === todo.userId
+      (currentElement: Todo) => currentElement.userId === todo.userId
     );
     if (existingTodo !== undefined) {
       alert('Такая Задача уже есть');

@@ -26,6 +26,15 @@ export class UserCardComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
+  private performAction(
+    actionName: string,
+    action: Function,
+    duration: number = 3000
+  ): void {
+    action();
+    this.snackBar.open(actionName, 'OK', { duration });
+  }
+
   public openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
       width: '600px',
@@ -34,14 +43,12 @@ export class UserCardComponent {
 
     dialogRef.afterClosed().subscribe((result: boolean | undefined) => {
       if (result) {
-        this.deleteUser.emit(this.user.id);
-        this.snackBar.open('ПОЛЬЗОВАТЕЛЬ УДАЛЕН', 'OK', {
-          duration: 3000,
+        this.performAction('ПОЛЬЗОВАТЕЛЬ УДАЛЕН', () => {
+          this.deleteUser.emit(this.user.id);
         });
-      } else
-        this.snackBar.open('ОТМЕНА УДАЛЕНИЯ', 'OK', {
-          duration: 3000,
-        });
+      } else {
+        this.performAction('ОТМЕНА УДАЛЕНИЯ', () => {});
+      }
     });
   }
 
@@ -50,11 +57,10 @@ export class UserCardComponent {
       data: { user: this.user },
     });
 
-    dialogRef.afterClosed().subscribe((editResult) => {
+    dialogRef.afterClosed().subscribe((editResult: User | undefined) => {
       if (editResult) {
-        this.editUser.emit(editResult);
-        this.snackBar.open('ОТРЕДАКТИРОВАЛИ ПОЛЬЗОВАТЕЛЯ', 'OK', {
-          duration: 3000,
+        this.performAction('ОТРЕДАКТИРОВАЛИ ПОЛЬЗОВАТЕЛЯ', () => {
+          this.editUser.emit(editResult);
         });
       }
     });

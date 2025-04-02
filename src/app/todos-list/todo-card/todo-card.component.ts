@@ -25,6 +25,15 @@ export class TodoCardComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
+  private performAction(
+    actionName: string,
+    action: Function,
+    duration: number = 3000
+  ): void {
+    action();
+    this.snackBar.open(actionName, 'OK', { duration });
+  }
+
   public openDeleteTodoDialog(): void {
     const dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
       width: '600px',
@@ -33,14 +42,12 @@ export class TodoCardComponent {
 
     dialogRef.afterClosed().subscribe((result: boolean | undefined) => {
       if (result) {
-        this.deleteTodo.emit(this.todo.id);
-        this.snackBar.open('ЗАДАЧА УДАЛЕНА', 'OK', {
-          duration: 3000,
+        this.performAction('ЗАДАЧА УДАЛЕНА', () => {
+          this.deleteTodo.emit(this.todo.id);
         });
-      } else
-        this.snackBar.open('ОТМЕНА УДАЛЕНИЯ ЗАДАЧИ', '', {
-          duration: 3000,
-        });
+      } else {
+        this.performAction('ОТМЕНА УДАЛЕНИЯ ЗАДАЧИ', () => {});
+      }
     });
   }
 
@@ -51,9 +58,8 @@ export class TodoCardComponent {
 
     dialogRef.afterClosed().subscribe((editResultTodo: Todo | undefined) => {
       if (editResultTodo) {
-        this.editTodo.emit(editResultTodo);
-        this.snackBar.open('ОТРЕДАКТИРОВАЛИ ЗАДАЧУ', 'OK', {
-          duration: 3000,
+        this.performAction('ОТРЕДАКТИРОВАЛИ ЗАДАЧУ', () => {
+          this.editTodo.emit(editResultTodo);
         });
       }
     });

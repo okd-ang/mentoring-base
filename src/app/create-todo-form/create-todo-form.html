@@ -1,7 +1,7 @@
 <h1>Create ToDo Form</h1>
 
-<div class="mat-form" style="margin: 30px 30px 30px 0">
-  <form style="display: flex; flex-direction: column" [formGroup]="form">
+<div class="mat-form">
+  <form class='create-form' [formGroup]="form">
     <mat-form-field>
       <mat-label>Текст задачи</mat-label>
       <input matInput formControlName="title" />
@@ -24,10 +24,10 @@
     </mat-button-toggle-group>
 
     <button
+      class="btn-create"
       mat-raised-button
       (click)="submitForm()"
       type="submit"
-      style="width: 250px; margin-top: 20px"
       [disabled]="form.invalid"
     >
       <mat-icon>task</mat-icon>

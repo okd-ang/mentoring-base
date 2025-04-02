@@ -18,8 +18,4 @@ export class DeleteUserDialogComponent {
   public readonly data = inject<{ user: User }>(MAT_DIALOG_DATA);
 
   readonly dialog = inject(MatDialog);
-
-  constructor() {
-    console.log('ДАННЫЕ КОТОРЫЕ ПРИХОДЯТ В МОДАЛКУ', this.data);
-  }
 }

@@ -54,7 +54,6 @@ export class UsersListComponent {
 
   editUser(user: User) {
     this.usersService.editUser(user);
-
   }
 
   public createUser(formData: createUser) {

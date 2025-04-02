@@ -36,7 +36,7 @@ export class EditUserDialogComponent {
     id: new FormControl(this.data.user.id, [
       Validators.required,
       Validators.minLength(1),
-    ]), //менял номер id new Date().getTime()
+    ]),
     name: new FormControl(this.data.user.name, [
       Validators.required,
       Validators.minLength(2),

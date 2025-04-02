@@ -1,6 +1,6 @@
 <h1>СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ</h1>
-<div class="mat-form" style="margin: 30px 30px 30px 30px">
-  <form style="display: flex; flex-direction: column" [formGroup]="form">
+<div class="mat-form">
+  <form class="form-createUser" [formGroup]="form">
     <mat-form-field>
       <mat-label>Имя пользователя</mat-label>
       <input matInput formControlName="name" />
@@ -26,10 +26,10 @@
     </mat-form-field>
 
     <button
+      class="btn-createUser"
       mat-raised-button
       (click)="submitForm()"
       type="submit"
-      style="width: 250px; margin-top: 20px"
       [disabled]="form.invalid"
     >
       <mat-icon>person add</mat-icon>

@@ -1,9 +1,6 @@
 <h1>ЗАДАЧА: {{ data.todo.title }}</h1>
 
-<form
-  style="display: flex; flex-direction: column; padding: 100px"
-  [formGroup]="form"
->
+<form class="form-editTodo" [formGroup]="form">
   <mat-form-field>
     <mat-label>Текст задачи</mat-label>
     <input matInput formControlName="title" />
@@ -26,9 +23,9 @@
   </mat-button-toggle-group>
 
   <button
+    class="btn-editTodo"
     mat-raised-button
     type="submit"
-    style="width: 250px; margin-top: 20px"
     [disabled]="form.invalid"
     [mat-dialog-close]="todoWithUpdatedFields"
   >
