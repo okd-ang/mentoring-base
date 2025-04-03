@@ -14,8 +14,10 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { User } from '../user-interface';
+import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
 
 @Component({
+  providers: [CustomPhoneNumberPipe],
   selector: 'app-edit-user-dialog',
   standalone: true,
   templateUrl: './edit-user-dialog.component.html',
@@ -27,10 +29,13 @@ import { User } from '../user-interface';
     MatFormField,
     MatButtonModule,
     MatDialogClose,
+
   ],
 })
 export class EditUserDialogComponent {
   readonly data = inject<{ user: User }>(MAT_DIALOG_DATA);
+  readonly customPhoneNumber = inject(CustomPhoneNumberPipe);
+  private phone = this.customPhoneNumber.transform(this.data.user.phone)
 
   public form = new FormGroup({
     id: new FormControl(this.data.user.id, [
@@ -45,6 +50,11 @@ export class EditUserDialogComponent {
       Validators.required,
       Validators.email,
     ]),
+    phone: new FormControl(this.phone, [
+      Validators.required,
+      Validators.minLength(5),
+    ]),
+
     website: new FormControl(this.data.user.website, [
       Validators.required,
       Validators.minLength(3),

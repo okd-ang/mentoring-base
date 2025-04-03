@@ -6,6 +6,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CustomUpperCasePipe } from '../../pipes/upper-case.pipe';
+import { CustomDatePipe } from '../../pipes/date.pipe';
+import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { CustomUpperCasePipe } from '../../pipes/upper-case.pipe';
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
   standalone: true,
-  imports: [MatDialogModule, MatSnackBarModule, CustomUpperCasePipe, ],
+  imports: [MatDialogModule, MatSnackBarModule, CustomUpperCasePipe, CustomDatePipe, CustomPhoneNumberPipe ],
 })
 export class UserCardComponent {
   @Input()
@@ -28,6 +30,9 @@ export class UserCardComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
+  today = new Date()
+  // phoneNumber = new PhoneNumber()
+
   private showSnackBarUser(message: string, action: string = 'OK', duration: number = 3000): void {
     this.snackBar.open(message, action, { duration });
   }
@@ -35,7 +40,7 @@ export class UserCardComponent {
   public openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DeleteUserDialogComponent, {
       width: '600px',
-      data: { user: this.user.id },
+      data: { user: this.user },
     });
 
     dialogRef.afterClosed().subscribe((result: boolean | undefined) => {

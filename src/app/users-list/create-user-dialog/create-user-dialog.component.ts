@@ -36,6 +36,7 @@ export class CreateUserDialogComponent {
     ]),
     name: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(5)]),
     website: new FormControl('', [
       Validators.required,
       Validators.minLength(3),

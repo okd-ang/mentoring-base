@@ -1,7 +1,8 @@
 <div class="todos-list__card">
-  <h1>ТЕКСТ ЗАДАЧИ</h1>
+  <h5>Сегодня: {{today | customDate}}</h5>
+  <h2>ТЕКСТ ЗАДАЧИ</h2>
   <div class="todos-card-text">
-    {{ todo.title }}
+    {{ todo.title | customTruncate}}
   </div>
   <p>АВТОР ЗАДАЧИ</p>
   <div class="todos-card-text">

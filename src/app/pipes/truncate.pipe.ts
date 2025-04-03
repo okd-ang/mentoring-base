@@ -6,8 +6,7 @@ import { Pipe, PipeTransform } from "@angular/core";
   pure: true,
 })
 export class CustomTruncatePipe implements PipeTransform{
-  transform(text: string, limit: number = 20): string {
-    throw new Error("Method not implemented.");
+  transform(text: string): string {
+    return text.length > 20? text.slice(0,20) + '...' : text;
   }
-
 }
