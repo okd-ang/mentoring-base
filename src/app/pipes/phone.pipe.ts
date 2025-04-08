@@ -1,15 +1,12 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe ({
+@Pipe({
   name: 'customPhoneNumber',
   standalone: true,
   pure: true,
 })
 export class CustomPhoneNumberPipe implements PipeTransform {
   transform(phoneNumber: string | undefined): string {
-    if (!phoneNumber) {
-      return '';
-    }
-    return phoneNumber.split('-').join('');
+    return phoneNumber ? phoneNumber.split('-').join('') : '';
   }
 }

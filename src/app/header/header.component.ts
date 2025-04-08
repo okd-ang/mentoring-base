@@ -1,8 +1,6 @@
-import { NgFor, NgIf } from "@angular/common";
-import { Component} from "@angular/core";
-import { RouterLink } from "@angular/router";
-
-
+import { NgFor, NgIf } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 const aboutCompanyFn = (text: string) => text;
 const aboutCompany = aboutCompanyFn('Окомпании');
@@ -26,24 +24,18 @@ const upperCaseMenuItems: string[] = menuItems.map((item: string): string => {
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-
 export class HeaderComponent {
-
   isShowCatalog = true;
 
   readonly headerItem1 = 'Главная';
   readonly headerItem2 = 'О компании';
   readonly headerItem3 = 'Каталог';
 
-
-
   readonly header2Item1 = 'Каталог';
   readonly header2Item2 = 'Стройматериалы';
   readonly header2Item3 = 'Инструменты';
   readonly header2Item4 = 'Электрика';
   readonly header2Item5 = 'Интерьер и одежда';
-
-
 
   readonly aboutCompany = aboutCompany;
 
@@ -53,7 +45,7 @@ export class HeaderComponent {
 
   changeMenuText(): void {
     this.menuItems = upperCaseMenuItems.map((item) =>
-      this.isUpperCase ? item.toLowerCase() : item.toUpperCase()
+      this.isUpperCase ? item.toLowerCase() : item.toUpperCase(),
     );
     this.isUpperCase = !this.isUpperCase;
   }

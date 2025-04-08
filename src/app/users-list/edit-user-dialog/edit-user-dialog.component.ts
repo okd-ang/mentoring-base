@@ -29,13 +29,12 @@ import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
     MatFormField,
     MatButtonModule,
     MatDialogClose,
-
   ],
 })
 export class EditUserDialogComponent {
   readonly data = inject<{ user: User }>(MAT_DIALOG_DATA);
   readonly customPhoneNumber = inject(CustomPhoneNumberPipe);
-  private phone = this.customPhoneNumber.transform(this.data.user.phone)
+  private phone = this.customPhoneNumber.transform(this.data.user.phone);
 
   public form = new FormGroup({
     id: new FormControl(this.data.user.id, [

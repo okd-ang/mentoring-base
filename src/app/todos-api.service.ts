@@ -9,7 +9,7 @@ export class TodosApiService {
 
   getTodos(): Observable<Todo[]> {
     return this.apiService.get<Todo[]>(
-      'https://jsonplaceholder.typicode.com/todos'
+      'https://jsonplaceholder.typicode.com/todos',
     );
   }
 }

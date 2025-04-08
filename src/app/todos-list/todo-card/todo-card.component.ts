@@ -12,7 +12,12 @@ import { CustomDatePipe } from '../../pipes/date.pipe';
   templateUrl: './todo-card.component.html',
   styleUrl: './todo-card.component.scss',
   standalone: true,
-  imports: [MatDialogModule, MatSnackBarModule, CustomTruncatePipe, CustomDatePipe],
+  imports: [
+    MatDialogModule,
+    MatSnackBarModule,
+    CustomTruncatePipe,
+    CustomDatePipe,
+  ],
 })
 export class TodoCardComponent {
   @Input()
@@ -27,12 +32,12 @@ export class TodoCardComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
-  today = new Date()
+  today = new Date();
 
   private showSnackBarTodo(
     message: string,
     action: string = 'OK',
-    duration: number = 3000
+    duration: number = 3000,
   ): void {
     this.snackBar.open(message, action, { duration });
   }

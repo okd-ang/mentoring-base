@@ -9,13 +9,18 @@ import { CustomUpperCasePipe } from '../../pipes/upper-case.pipe';
 import { CustomDatePipe } from '../../pipes/date.pipe';
 import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
 
-
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
   standalone: true,
-  imports: [MatDialogModule, MatSnackBarModule, CustomUpperCasePipe, CustomDatePipe, CustomPhoneNumberPipe ],
+  imports: [
+    MatDialogModule,
+    MatSnackBarModule,
+    CustomUpperCasePipe,
+    CustomDatePipe,
+    CustomPhoneNumberPipe,
+  ],
 })
 export class UserCardComponent {
   @Input()
@@ -30,10 +35,13 @@ export class UserCardComponent {
   readonly dialog = inject(MatDialog);
   private snackBar = inject(MatSnackBar);
 
-  today = new Date()
-  // phoneNumber = new PhoneNumber()
+  today = new Date();
 
-  private showSnackBarUser(message: string, action: string = 'OK', duration: number = 3000): void {
+  private showSnackBarUser(
+    message: string,
+    action: string = 'OK',
+    duration: number = 3000,
+  ): void {
     this.snackBar.open(message, action, { duration });
   }
 

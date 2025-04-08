@@ -1,10 +1,10 @@
 <div class="users-list__card">
-  <h5>Сегодня: {{today | customDate}}</h5>
+  <h5>Сегодня: {{ today | customDate }}</h5>
   <h2>Пользователь</h2>
-  <p>{{ user.name | customUpperCase}}</p>
-  <p>{{ user.email | customUpperCase}}</p>
-  <p>{{ user.phone | customPhoneNumber}}</p>
-  <p>{{ user.website | customUpperCase}}</p>
+  <p>{{ user.name | customUpperCase }}</p>
+  <p>{{ user.email | customUpperCase }}</p>
+  <p>{{ user.phone | customPhoneNumber }}</p>
+  <p>{{ user.website | customUpperCase }}</p>
   <p>{{ user.company.name }}</p>
 
   <button class="users-list__button" (click)="openDeleteDialog()">

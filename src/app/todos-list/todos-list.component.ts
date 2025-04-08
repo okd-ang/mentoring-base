@@ -44,7 +44,7 @@ export class TodosListComponent {
   }
 
   editTodo(todo: Todo) {
-    this.todosService.editTodo(todo)
+    this.todosService.editTodo(todo);
   }
 
   public createTodo(formData: Todo) {

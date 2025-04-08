@@ -15,13 +15,13 @@ export class TodosService {
     this.todosSubject$.next(
       this.todosSubject$.value.map((todo) => {
         return todo.id === editedTodo.id ? editedTodo : todo;
-      })
+      }),
     );
   }
 
   createTodo(todo: Todo) {
     const existingTodo = this.todosSubject$.value.find(
-      (currentElement: Todo) => currentElement.userId === todo.userId
+      (currentElement: Todo) => currentElement.userId === todo.userId,
     );
     if (existingTodo !== undefined) {
       alert('Такая Задача уже есть');
@@ -35,7 +35,7 @@ export class TodosService {
     this.todosSubject$.next(
       this.todosSubject$.value.filter((item) => {
         return id === item.id ? false : true;
-      })
+      }),
     );
   }
 }

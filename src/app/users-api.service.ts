@@ -9,7 +9,7 @@ export class UsersApiService {
 
   getUsers(): Observable<User[]> {
     return this.apiService.get<User[]>(
-      'https://jsonplaceholder.typicode.com/users'
+      'https://jsonplaceholder.typicode.com/users',
     );
   }
 }

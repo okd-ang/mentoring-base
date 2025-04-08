@@ -15,13 +15,13 @@ export class UsersService {
     this.usersSubject$.next(
       this.usersSubject$.value.map((user) => {
         return user.id === editeUser.id ? editeUser : user;
-      })
+      }),
     );
   }
 
   createUser(user: User) {
     const existingUser = this.usersSubject$.value.find(
-      (currentElement: User) => currentElement.email === user.email
+      (currentElement: User) => currentElement.email === user.email,
     );
     if (existingUser !== undefined) {
       alert('ТАКОЙ ЕМАИЛ УЖЕ ЕСТЬ');
@@ -35,7 +35,7 @@ export class UsersService {
     this.usersSubject$.next(
       this.usersSubject$.value.filter((item) => {
         return id === item.id ? false : true;
-      })
+      }),
     );
   }
 }

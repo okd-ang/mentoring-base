@@ -1,9 +1,6 @@
 <h2>ПОЛЬЗОВАТЕЛЬ: {{ data.user.name }}</h2>
 
-<form
-  class="form-group"
-  [formGroup]="form"
->
+<form class="form-group" [formGroup]="form">
   <mat-form-field>
     <mat-label>Имя пользователя</mat-label>
     <input matInput formControlName="name" />
