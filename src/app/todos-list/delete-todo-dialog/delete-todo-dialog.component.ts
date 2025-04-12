@@ -6,11 +6,12 @@ import {
 } from '@angular/material/dialog';
 import { Todo } from '../todos-interface';
 import { MatButtonModule } from '@angular/material/button';
+import { WhiteDirective } from '../../directives/white.directive';
 
 @Component({
   selector: 'app-delete-todo-dialog',
   standalone: true,
-  imports: [MatDialogModule, MatButtonModule],
+  imports: [MatDialogModule, MatButtonModule, WhiteDirective],
   templateUrl: './delete-todo-dialog.component.html',
   styleUrl: './delete-todo-dialog.component.scss',
 })

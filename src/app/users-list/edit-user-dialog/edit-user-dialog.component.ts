@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { User } from '../user-interface';
 import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   providers: [CustomPhoneNumberPipe],
@@ -29,6 +30,7 @@ import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
     MatFormField,
     MatButtonModule,
     MatDialogClose,
+    MatTooltipModule,
   ],
 })
 export class EditUserDialogComponent {

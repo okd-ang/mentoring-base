@@ -8,6 +8,9 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CustomUpperCasePipe } from '../../pipes/upper-case.pipe';
 import { CustomDatePipe } from '../../pipes/date.pipe';
 import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
+import { ShadowDirective } from '../../directives/shadow.directive';
+import {MatCardModule} from '@angular/material/card';
+
 
 @Component({
   selector: 'app-user-card',
@@ -20,6 +23,8 @@ import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
     CustomUpperCasePipe,
     CustomDatePipe,
     CustomPhoneNumberPipe,
+    ShadowDirective,
+    MatCardModule
   ],
 })
 export class UserCardComponent {

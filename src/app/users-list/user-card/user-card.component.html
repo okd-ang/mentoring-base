@@ -1,16 +1,23 @@
-<div class="users-list__card">
-  <h5>Сегодня: {{ today | customDate }}</h5>
-  <h2>Пользователь</h2>
-  <p>{{ user.name | customUpperCase }}</p>
-  <p>{{ user.email | customUpperCase }}</p>
-  <p>{{ user.phone | customPhoneNumber }}</p>
-  <p>{{ user.website | customUpperCase }}</p>
-  <p>{{ user.company.name }}</p>
+<mat-card shadow class='mat-cerd'>
+  <div  class="users-list__card">
+    <h5>Сегодня: {{ today | customDate }}</h5>
+    <h2>Пользователь</h2>
+    <p>{{ user.name | customUpperCase }}</p>
+    <p>{{ user.email | customUpperCase }}</p>
+    <p>{{ user.phone | customPhoneNumber }}</p>
+    <p>{{ user.website | customUpperCase }}</p>
+    <p>{{ user.company.name }}</p>
+  
+    <button class="users-list__button" (click)="openDeleteDialog()">
+      УДАЛИТЬ ЮЗЕРА
+    </button>
+    <button class="users-list__button" (click)="openDialog()">
+      РЕДАКТИРОВАТЬ ЮЗЕРА
+    </button>
+  </div>
+</mat-card>
 
-  <button class="users-list__button" (click)="openDeleteDialog()">
-    УДАЛИТЬ ЮЗЕРА
-  </button>
-  <button class="users-list__button" (click)="openDialog()">
-    РЕДАКТИРОВАТЬ ЮЗЕРА
-  </button>
-</div>
+
+
+
+
