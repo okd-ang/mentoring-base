@@ -5,11 +5,11 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TodosApiService {
-  readonly apiService = inject(HttpClient);
+  readonly apiService: HttpClient = inject(HttpClient);
 
   getTodos(): Observable<Todo[]> {
     return this.apiService.get<Todo[]>(
-      'https://jsonplaceholder.typicode.com/todos',
+      'https://jsonplaceholder.typicode.com/todos'
     );
   }
 }

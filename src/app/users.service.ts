@@ -3,6 +3,7 @@ import { User } from './users-list/user-interface';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
+
 export class UsersService {
   private usersSubject$ = new BehaviorSubject<User[]>([]);
   users$ = this.usersSubject$.asObservable();
@@ -13,15 +14,15 @@ export class UsersService {
 
   editUser(editeUser: User) {
     this.usersSubject$.next(
-      this.usersSubject$.value.map((user) => {
+      this.usersSubject$.value.map((user: User) => {
         return user.id === editeUser.id ? editeUser : user;
-      }),
+      })
     );
   }
 
   createUser(user: User) {
-    const existingUser = this.usersSubject$.value.find(
-      (currentElement: User) => currentElement.email === user.email,
+    const existingUser: User | undefined = this.usersSubject$.value.find(
+      (currentElement: User) => currentElement.email === user.email
     );
     if (existingUser !== undefined) {
       alert('ТАКОЙ ЕМАИЛ УЖЕ ЕСТЬ');
@@ -33,9 +34,10 @@ export class UsersService {
 
   deleteUser(id: number) {
     this.usersSubject$.next(
-      this.usersSubject$.value.filter((item) => {
+      this.usersSubject$.value.filter((item: User) => {
         return id === item.id ? false : true;
-      }),
+      })
     );
   }
+  
 }

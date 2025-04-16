@@ -9,8 +9,7 @@ import { CustomUpperCasePipe } from '../../pipes/upper-case.pipe';
 import { CustomDatePipe } from '../../pipes/date.pipe';
 import { CustomPhoneNumberPipe } from '../../pipes/phone.pipe';
 import { ShadowDirective } from '../../directives/shadow.directive';
-import {MatCardModule} from '@angular/material/card';
-
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-card',
@@ -24,10 +23,14 @@ import {MatCardModule} from '@angular/material/card';
     CustomDatePipe,
     CustomPhoneNumberPipe,
     ShadowDirective,
-    MatCardModule
+    MatCardModule,
   ],
 })
 export class UserCardComponent {
+  
+  readonly dialog = inject(MatDialog);
+  private snackBar = inject(MatSnackBar);
+  
   @Input()
   user!: User;
 
@@ -37,15 +40,12 @@ export class UserCardComponent {
   @Output()
   editUser = new EventEmitter<User>();
 
-  readonly dialog = inject(MatDialog);
-  private snackBar = inject(MatSnackBar);
-
   today = new Date();
 
   private showSnackBarUser(
     message: string,
     action: string = 'OK',
-    duration: number = 3000,
+    duration: number = 3000
   ): void {
     this.snackBar.open(message, action, { duration });
   }

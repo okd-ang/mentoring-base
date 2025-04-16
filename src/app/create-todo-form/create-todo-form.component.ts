@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { ChangeDetectionStrategy, signal } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
@@ -32,6 +32,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ],
 })
 export class CreateTodoFormComponent {
+  
   @Output()
   createTodo = new EventEmitter();
 
@@ -45,4 +46,5 @@ export class CreateTodoFormComponent {
     this.createTodo.emit(this.form.value);
     this.form.reset();
   }
+  
 }

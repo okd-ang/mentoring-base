@@ -24,10 +24,14 @@
         <button class="button-js" (click)="changeMenuText()">
           Изменить текст
         </button>
-        <button class="button-js" routerLink="/users">Admin</button>
+        <button class="button-js" routerLink="/users">User</button>
         <button class="button-js" routerLink="/todos">ToDos</button>
+        <button class="button-js" routerLink="/admin">Admin</button>
       </div>
-
+      <div>
+        <button yellow class="button-log" (click)="openDialog()" *ngIf='(userService.user$ | async) === null'>Войти</button>
+        <button yellow class="button-log" (click)="logout()" *ngIf='(userService.user$ | async) !== null'>Выйти</button>
+      </div>
       <div class="header-nav__nav-right">
         <div class="header-nav__nav-phone">
           <img src="/assets/phone.svg" alt="image phone" />
@@ -50,7 +54,6 @@
     </div>
   </div>
 </header>
-
 <div class="header-menu">
   <div class="content-container">
     <div class="header-menu__menu-wrp">

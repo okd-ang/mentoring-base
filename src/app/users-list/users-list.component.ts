@@ -42,12 +42,13 @@ export class UsersListComponent {
       this.createUser(result);
     });
   }
-
-  constructor() {
+  
+  ngOnInit(): void {
     this.usersApiService.getUsers().subscribe((response: User[]) => {
       this.usersService.setUsers(response);
     });
   }
+
   deleteUser(id: number) {
     this.usersService.deleteUser(id);
   }

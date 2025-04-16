@@ -7,21 +7,21 @@ export class TodosService {
   todosSubject$ = new BehaviorSubject<Todo[]>([]);
   todos$ = this.todosSubject$.asObservable();
 
-  setTodos(todos: Todo[]) {
+  setTodos(todos: Todo[]): void {
     this.todosSubject$.next(todos.slice(0, 10));
   }
 
-  editTodo(editedTodo: Todo) {
+  editTodo(editedTodo: Todo): void {
     this.todosSubject$.next(
       this.todosSubject$.value.map((todo) => {
         return todo.id === editedTodo.id ? editedTodo : todo;
-      }),
+      })
     );
   }
 
-  createTodo(todo: Todo) {
+  createTodo(todo: Todo): void {
     const existingTodo = this.todosSubject$.value.find(
-      (currentElement: Todo) => currentElement.userId === todo.userId,
+      (currentElement: Todo) => currentElement.userId === todo.userId
     );
     if (existingTodo !== undefined) {
       alert('Такая Задача уже есть');
@@ -31,11 +31,11 @@ export class TodosService {
     }
   }
 
-  deleteTodo(id: number) {
+  deleteTodo(id: number): void {
     this.todosSubject$.next(
-      this.todosSubject$.value.filter((item) => {
+      this.todosSubject$.value.filter((item: Todo) => {
         return id === item.id ? false : true;
-      }),
+      })
     );
   }
 }

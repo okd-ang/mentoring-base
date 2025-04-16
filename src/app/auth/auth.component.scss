@@ -1,0 +1,19 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-title {
+  margin: 10px;
+}
+
+.button-wrp {
+  display: flex;
+  gap: 10px;
+}
+
+.aut-button {
+  width: 150px;
+}
