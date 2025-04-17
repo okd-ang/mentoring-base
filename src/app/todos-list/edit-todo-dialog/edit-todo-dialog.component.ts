@@ -36,13 +36,11 @@ export class EditTodoDialogComponent {
       Validators.minLength(2),
     ]),
     userId: new FormControl(this.data.todo.userId, [Validators.required]),
+    id: new FormControl(this.data.todo.id),
     completed: new FormControl(this.data.todo.completed, [Validators.required]),
   });
 
   get todoWithUpdatedFields() {
-    return {
-      ...this.form.value,
-      id: this.data.todo.id,
-    };
+    return this.form.value;
   }
 }

@@ -11,6 +11,7 @@ export interface IUser {
   providedIn: 'root',
 })
 export class UserService {
+  
   private readonly userSubject$ = new BehaviorSubject<IUser | null>(null);
   public readonly user$ = this.userSubject$.asObservable();
 
@@ -22,12 +23,10 @@ export class UserService {
 
   loginAsAdmin() {
     this.userSubject$.next({ ...this.user, isAdmin: true });
-    console.log('вошли как админ');
   }
 
   loginAsUser() {
     this.userSubject$.next({ ...this.user, isAdmin: false });
-    console.log('вошли как пользователь');
   }
 
   get isAdmin() {
@@ -36,6 +35,6 @@ export class UserService {
 
   logout() {
     this.userSubject$.next(null);
-    console.log(this.userSubject$);
   }
+
 }

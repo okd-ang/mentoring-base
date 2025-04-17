@@ -29,8 +29,22 @@
         <button class="button-js" routerLink="/admin">Admin</button>
       </div>
       <div>
-        <button yellow class="button-log" (click)="openDialog()" *ngIf='(userService.user$ | async) === null'>Войти</button>
-        <button yellow class="button-log" (click)="logout()" *ngIf='(userService.user$ | async) !== null'>Выйти</button>
+        <button
+          yellow
+          class="button-log"
+          (click)="openDialog()"
+          *ngIf="(userService.user$ | async) === null"
+        >
+          Войти
+        </button>
+        <button
+          yellow
+          class="button-log"
+          (click)="logout()"
+          *ngIf="(userService.user$ | async) !== null"
+        >
+          Выйти
+        </button>
       </div>
       <div class="header-nav__nav-right">
         <div class="header-nav__nav-phone">

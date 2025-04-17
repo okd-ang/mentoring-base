@@ -29,6 +29,7 @@ const upperCaseMenuItems: string[] = menuItems.map((item: string): string => {
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  
   isShowCatalog = true;
 
   private readonly dialog = inject(MatDialog);
@@ -63,7 +64,6 @@ export class HeaderComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: string) => {
-      console.log('Результат подписки, после диалогового окна:', result);
       if (result === 'admin') {
         this.userService.loginAsAdmin();
       } else if (result === 'user') {
@@ -71,13 +71,11 @@ export class HeaderComponent {
       } else return undefined;
     });
   }
-  
+
   public logout() {
     if (confirm('Вы точно хотите выйти?')) {
-      console.log('совершили logout')
-      return this.userService.logout()
-      
-    }
-    else return false;
+      return this.userService.logout();
+    } else return false;
   }
+
 }

@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Todo } from '../todos-list/todos-interface';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,19 +33,21 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ],
 })
 export class CreateTodoFormComponent {
-  
+
   @Output()
-  createTodo = new EventEmitter();
+  createTodo = new EventEmitter<Todo>();
 
   public form = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    userId: new FormControl('', [Validators.required]),
-    completed: new FormControl(null, [Validators.required]),
+    title: new FormControl<string>('', {nonNullable: true, validators:[Validators.required, Validators.minLength(2)]}),
+    userId: new FormControl<number | null>(null, {nonNullable: true, validators:Validators.required} ),
+    id: new FormControl<number>(new Date().getTime(), {nonNullable: true, validators:Validators.required}),
+    completed: new FormControl<boolean | null>(null, {nonNullable: true, validators:Validators.required}),
   });
 
   public submitForm(): void {
-    this.createTodo.emit(this.form.value);
+    const formData: Todo = this.form.getRawValue() as Todo;
+    this.createTodo.emit(formData);
     this.form.reset();
   }
-  
+
 }
