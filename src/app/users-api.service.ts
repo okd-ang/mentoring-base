@@ -7,7 +7,7 @@ import { User } from './users-list/user-interface';
 export class UsersApiService {
   readonly apiService = inject(HttpClient);
 
-  getUsers(): Observable<User[]> {
+  getUsers(p0: { limit: number; }): Observable<User[]> {
     return this.apiService.get<User[]>(
       'https://jsonplaceholder.typicode.com/users',
     );

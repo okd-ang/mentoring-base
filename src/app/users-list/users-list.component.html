@@ -11,7 +11,7 @@
     </button>
   </div>
   <div class="users-list">
-    <div *ngFor="let user of usersService.users$ | async">
+    <div *ngFor="let user of users$ | async">
       <app-user-card
         [user]="user"
         (deleteUser)="deleteUser(user.id)"

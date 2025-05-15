@@ -6,12 +6,14 @@ import {
   Injectable,
 } from '@angular/core';
 import { TodoCardComponent } from './todo-card/todo-card.component';
-import { TodosApiService } from '../todos-api.service';
 import { Todo } from './todos-interface';
 import { TodosService } from '../todos.service';
 import { CreateTodoFormComponent } from '../create-todo-form/create-todo-form.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Store } from '@ngrx/store';
+import { TodosActions } from './store/todo.actions';
+import { selectTodos } from './store/todos.selectors';
 
 @Injectable()
 @Component({
@@ -30,29 +32,25 @@ import { MatIconModule } from '@angular/material/icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosListComponent {
-  readonly todosApiService = inject(TodosApiService);
-  readonly todosService = inject(TodosService);
 
-  constructor() {
-    this.todosApiService.getTodos().subscribe((response: Todo[]) => {
-      this.todosService.setTodos(response);
-    });
+  readonly todosService = inject(TodosService);
+  
+  private readonly store = inject(Store);
+  public readonly todos$ = this.store.select(selectTodos);
+
+  ngOnInit(): void {
+    this.store.dispatch(TodosActions.load());
   }
 
   deleteTodo(id: number) {
-    this.todosService.deleteTodo(id);
+    this.store.dispatch(TodosActions.delete({ id }))
   }
 
   editTodo(todo: Todo) {
-    this.todosService.editTodo(todo);
+    this.store.dispatch(TodosActions.edit({ todo }))
   }
 
   public createTodo(formData: Todo) {
-    this.todosService.createTodo({
-      id: new Date().getTime(),
-      title: formData.title,
-      userId: formData.userId,
-      completed: formData.completed,
-    });
+    this.store.dispatch(TodosActions.create({ todo: formData }));
   }
 }
