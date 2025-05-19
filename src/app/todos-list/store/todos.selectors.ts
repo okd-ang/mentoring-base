@@ -1,5 +1,5 @@
-import { createSelector } from "@ngrx/store";
-import { Todo } from "../todos-interface";
+import { createSelector } from '@ngrx/store';
+import { Todo } from '../todos-interface';
 
 interface TodosState {
   todos: Todo[];
@@ -13,5 +13,5 @@ export const selectTodosFeature = (state: AppState) => state.todos;
 
 export const selectTodos = createSelector(
   selectTodosFeature,
-  (state: TodosState) =>state.todos
+  (state: TodosState) => state.todos
 );

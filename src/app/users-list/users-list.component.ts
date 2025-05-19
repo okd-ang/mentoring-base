@@ -5,7 +5,6 @@ import {
   inject,
   Injectable,
 } from '@angular/core';
-import { UsersApiService } from '../users-api.service';
 import { UserCardComponent } from './user-card/user-card.component';
 import { createUser, User } from './user-interface';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,9 +31,6 @@ import { selectUsers } from './store/users.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersListComponent {
-  
-  // readonly usersApiService = inject(UsersApiService);
-
   readonly dialog = inject(MatDialog);
 
   private readonly store = inject(Store);
@@ -49,8 +45,7 @@ export class UsersListComponent {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(UsersActions.load())
-  
+    this.store.dispatch(UsersActions.init());
   }
 
   deleteUser(id: number) {
@@ -64,5 +59,4 @@ export class UsersListComponent {
   public createUser(formData: createUser) {
     this.store.dispatch(UsersActions.create({ users: formData }));
   }
-  
 }

@@ -18,11 +18,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(),
     provideStore({
-        users: userReducer,
-        todos: todoReducer
+      users: userReducer,
+      todos: todoReducer,
     }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects(UsersEffects),
-    provideEffects(TodoEffects)
-],
+    provideEffects(TodoEffects),
+  ],
 };

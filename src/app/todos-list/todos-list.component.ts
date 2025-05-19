@@ -32,22 +32,21 @@ import { selectTodos } from './store/todos.selectors';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosListComponent {
-
   readonly todosService = inject(TodosService);
-  
+
   private readonly store = inject(Store);
   public readonly todos$ = this.store.select(selectTodos);
 
   ngOnInit(): void {
-    this.store.dispatch(TodosActions.load());
+    this.store.dispatch(TodosActions.init());
   }
 
   deleteTodo(id: number) {
-    this.store.dispatch(TodosActions.delete({ id }))
+    this.store.dispatch(TodosActions.delete({ id }));
   }
 
   editTodo(todo: Todo) {
-    this.store.dispatch(TodosActions.edit({ todo }))
+    this.store.dispatch(TodosActions.edit({ todo }));
   }
 
   public createTodo(formData: Todo) {
